@@ -41,12 +41,13 @@ console.log(ett);
 	}
 	const r=async()=>{
       
-      var b=localStorage.getItem("User")
+      var b=sessionStorage.getItem("User")
+
       var results=[]; 
       var l=[]
       console.log(b)
       //var b=user.user 
-      		 dat.ref(b).on('value', function(snapshot) {
+      		 dat.ref(sessionStorage.getItem("User")).on('value', function(snapshot) {
   snapshot.forEach(function(userSnapshot) {
     var userKey = userSnapshot.key;
     var userData = userSnapshot.val();
@@ -77,7 +78,7 @@ const r=(v,u,t)=>
 {
 console.log(state.total)
 
-  dat.ref(localStorage.getItem("User")).once('value', function(snapshot) {
+  dat.ref(sessionStorage.getItem("User")).once('value', function(snapshot) {
   snapshot.forEach(function(userSnapshot) {
     var userKey = userSnapshot.key;
     var userData = userSnapshot.val();
@@ -85,7 +86,7 @@ console.log(state.total)
     {
     	  document.getElementById(t).innerHTML=u*userData.UnitPrice;
 
-    	dat.ref(localStorage.getItem("User")+'/'+userKey).set({
+    	dat.ref(sessionStorage.getItem("User")+'/'+userKey).set({
     Quantity: u,
     ProductPrice:u*userData.UnitPrice,
     ProductImg:userData.ProductImg,
@@ -105,13 +106,13 @@ console.log(state.total)
 const emm=(i)=>
 {
 	console.log(i);
-	  dat.ref(localStorage.getItem("User")).once('value', function(snapshot) {
+	  dat.ref(sessionStorage.getItem("User")).once('value', function(snapshot) {
   snapshot.forEach(function(userSnapshot) {
     var userKey = userSnapshot.key;
     var userData = userSnapshot.val();
     if(userData.ProductImg==i)
     {
-    	dat.ref(localStorage.getItem("User")+'/'+userKey).remove();
+    	dat.ref(sessionStorage.getItem("User")+'/'+userKey).remove();
             
 }
 state.res=[]

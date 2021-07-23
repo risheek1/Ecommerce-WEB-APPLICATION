@@ -10,6 +10,7 @@ export const Products=(props)=>{
 	const [state,setState]=useState
     ({ 
       results:[], 
+
  
     }); 
     const [cart,setCart]=useState();
@@ -35,47 +36,37 @@ export const Products=(props)=>{
 auth.onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
-    sessionStorage.setItem("User",auth.currentUser.uid);
-
+    sessionStorage.setItem("User",user.uid);
+        
   } else {
     // No user is signed in.
     console.log("scb")
   }
 });
-
-		dat.ref(localStorage.getItem("User")).once('value', function(snapshot) {
+    
+	dat.ref(auth.currentUser.uid).once('value', function(snapshot) {
   snapshot.forEach(function(userSnapshot) {
     var userKey = userSnapshot.key;
     var userData = userSnapshot.val();
     l.push([userData])
-  });
-});
-console.log(l)
+    console.log(l)
 setCart({cart:l});
+
+  });
+});	
 
 
 	 }
 	 r();
 	},[]);
 const p=(id)=>
-	{
-
-let q=0
-
-var r=Object.values(cart)
-for(let i=0;i<r[0].length;i++)
 {
-   const e=Object.values(r[0][i])
-   if(e[0].ProductName==id)
-   {
-   	q+=1;
-   }
- }
 var f=0;
 auth.onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
-    sessionStorage.setItem("User",auth.currentUser.uid);
+    sessionStorage.setItem("User",user.uid);
+    sessionStorage.setItem("Email",user.email)
 
   } else {
     // No user is signed in.
@@ -83,10 +74,8 @@ auth.onAuthStateChanged(function(user) {
   }
 });
 
-sessionStorage.setItem("User",auth.currentUser.uid);
 console.log(auth.currentUser)
-localStorage.setItem("Email",auth.currentUser.email)
-console.log(sessionStorage.getItem("User"))
+console.log(sessionStorage.getItem("Email"))
 		dat.ref(auth.currentUser.uid).on('value',(snapshot)=>{
        const mo=snapshot.val();
          for(let i in mo)
@@ -114,7 +103,7 @@ else if(f==0)
 	}
 	
     }
-dat.ref(localStorage.getItem("User")).push({ProductImg:ig,ProductName:id,ProductPrice:price,Quantity:1,UnitPrice:price});
+dat.ref(sessionStorage.getItem("User")).push({ProductImg:ig,ProductName:id,ProductPrice:price,Quantity:1,UnitPrice:price});
 }
  console.log(auth.currentUser.uid)
 }

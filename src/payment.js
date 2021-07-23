@@ -83,7 +83,7 @@ localStorage.setItem("Total",state.total)
                 db.collection('Buyer-info ' + user.uid).doc('_' + time).set({
 
                     BuyerName: "Risheek",
-                    BuyerEmail: localStorage.getItem("Email"),
+                    BuyerEmail: auth.currentUser.email,
                     BuyerCell: cell,
                     BuyerAddress: address,
                     BuyerPayment: sessionStorage.getItem("Total"),
@@ -108,12 +108,11 @@ localStorage.setItem("Total",state.total)
                 <form autoComplete="off" className='form-group' onSubmit={cashoutSubmit}>
                     <label htmlFor="name">Name</label>
                     <input type="text" className='form-control' required
-                        value="
-                        Risheek" disabled />
+                        value={auth.currentUser.uid} disabled />
                     <br />
                     <label htmlFor="email">Email</label>
                     <input type="email" className='form-control' required
-                        value={localStorage.getItem("Email")} disabled />
+                        value={auth.currentUser.email} disabled />
                     <br />
                     <label htmlFor="Mobile No">Cell No</label>
                     <input type="number" className='form-control' required

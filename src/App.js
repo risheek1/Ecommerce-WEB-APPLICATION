@@ -45,7 +45,7 @@ export class App extends Component{
     <BrowserRouter>
     <Switch>
     <Route exact path='/' component={() => <Home user={this.state.user} />}/>
-    <Route path="/sign" component={Sign} />
+    <Route path="/signup" component={Sign} />
         <Route path="/add" component={AddProducts} />
                 <Route path="/payment" component={Payment} />
 
