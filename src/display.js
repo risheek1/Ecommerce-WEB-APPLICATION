@@ -44,7 +44,7 @@ auth.onAuthStateChanged(function(user) {
   }
 });
     
-	dat.ref(auth.currentUser.uid).once('value', function(snapshot) {
+	dat.ref(sessionStorage.getItem("User")).once('value', function(snapshot) {
   snapshot.forEach(function(userSnapshot) {
     var userKey = userSnapshot.key;
     var userData = userSnapshot.val();
@@ -76,7 +76,7 @@ auth.onAuthStateChanged(function(user) {
 
 console.log(auth.currentUser)
 console.log(sessionStorage.getItem("Email"))
-		dat.ref(auth.currentUser.uid).on('value',(snapshot)=>{
+		dat.ref(sessionStorage.getItem("User")).on('value',(snapshot)=>{
        const mo=snapshot.val();
          for(let i in mo)
          {
@@ -127,7 +127,7 @@ dat.ref(sessionStorage.getItem("User")).push({ProductImg:ig,ProductName:id,Produ
           <img class="im" src={product.ProductImg} alt=""/>
           <div class="img-info">
             <div class="info-inner">
-              <span class="p-name">{product.ProductName}</span>
+              <span class="p-name"><b>{product.ProductName}</b></span>
               
             </div>
             
