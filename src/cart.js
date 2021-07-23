@@ -93,12 +93,14 @@ console.log(state.total)
     ProductName:userData.ProductName,
     UnitPrice:userData.UnitPrice,
   });
-    	state.res=[]
-      	  window.location.reload();
+    	
 
 }
+    
+
   });
 });
+    	setState({res:[]})
 
       	  window.location.reload();
 
@@ -115,9 +117,13 @@ const emm=(i)=>
     	dat.ref(sessionStorage.getItem("User")+'/'+userKey).remove();
             
 }
+    	setState({res:[]})
+
 state.res=[]
   });
 });
+	      	setState({res:[]})
+
 	      	  window.location.reload();
 
 }
